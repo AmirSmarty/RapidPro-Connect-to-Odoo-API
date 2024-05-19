@@ -16,9 +16,12 @@
                             <field name="village"/>
                             <field name="description"/>
                             <field name="cvac_name"/>
+                            <field name="cvac_tel"/>
                             <field name="icp_name"/>
+                            <field name="icp_tel"/>
                             <field name="region"/>
                             <field name="district"/>
+                            <field name="structure"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -28,52 +31,51 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="view_hospital_patient_tree">
-            <field name="name">hospital.patient.tree</field>
-            <field name="model">hospital.patient</field>
+        <record model="ir.ui.view" id="view_rumor_alert_tree">
+            <field name="name">rumor.alert.tree</field>
+            <field name="model">rumor.alert</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="ref"/>
-                    <field name="name"/>
-                    <field name="age"/>
-                    <field name="gender"/>
-                    <field name="capitalized_name"/>
+                    <field name="village"/>
+                    <field name="region"/>
+                    <field name="district"/>
+                    <field name="structure"/>
+                    <field name="cvac_name"/>
+                    <field name="icp_name"/>
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="view_hospital_patient_search">
-            <field name="name">hospital.patient.search</field>
-            <field name="model">hospital.patient</field>
+        <record model="ir.ui.view" id="view_rumor_alert_search">
+            <field name="name">rumor.alert.search</field>
+            <field name="model">rumor.alert</field>
             <field name="arch" type="xml">
                 <search>
-                    <!--          <field name="ref"/>-->
-                    <field name="name" filter_domain="['|',('name','ilike',self),('ref','ilike',self)]"/>
-                    <field name="age"/>
-                    <field name="gender"/>
-                    <filter name="filter_male" string="Masculin" domain="[('gender','=','male')]"/>
-                    <filter name="filter_female" string="Féminin" domain="[('gender','=','female')]"/>
-                    <filter name="filter_others" string="Autres" domain="[('gender','=','others')]"/>
-                    <separator/>
-                    <filter name="filter_childs" string="Enfants" domain="[('is_child','=','True')]"/>
+                    <!--<field name="ref"/>-->
+                    <field name="description"
+                           filter_domain="['|',('description','ilike',self),('village','ilike',self),('region','ilike',self),('district','ilike',self),('structure','ilike',self)]"/>
+                    <field name="village"/>
+                    <field name="district"/>
+                    <field name="structure"/>
                     <group expand="0" string="Group By...">
-                        <filter string="Genre" name="group_by_gender" context="{'group_by':'gender'}"/>
+                        <filter string="Region" name="group_by_region" context="{'group_by':'region'}"/>
                     </group>
                 </search>
             </field>
         </record>
-        <record model="ir.actions.act_window" id="action_hospital_patient">
-            <field name="name">Patients</field>
+        <record model="ir.actions.act_window" id="action_rumor_alert">
+            <field name="name">Alerts</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">hospital.patient</field>
+            <field name="res_model">rumor.alert</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_filter_child':1}</field>
-            <field name="search_view_id" ref="om_hospital.view_hospital_patient_search"/>
+            <field name="search_view_id" ref="rumor.view_rumor_alert_search"/>
         </record>
         <!-- Top menu item -->
-        <menuitem name="Patients"
-                  id="menu_patients"
-                  parent="menu_hospital_operations"
-                  action="action_hospital_patient"
+        <menuitem name="Alerts"
+                  id="menu_alerts"
+                  parent="menu_rumor_tracking"
+                  action="action_rumor_alert"
                   sequence="10"/>
     </data>
 </odoo>
