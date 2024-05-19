@@ -18,20 +18,11 @@ class RumorAlert(models.Model):
     ref = fields.Char(string="Référence",
                       default=lambda self: self.env['ir.sequence'].next_by_code('rumor.alert') or _("Nouveau"))
 
-    @api.depends('name')
-    def _compute_capitalized_name(self):
-        for rec in self:
-            if rec.region:
-                rec.region = rec.region.upper()
-            else:
-                rec.region = ''
-            if rec.district:
-                rec.district = rec.district.upper()
-            else:
-                rec.district = ''
 
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
             vals['ref'] = self.env['ir.sequence'].next_by_code('rumor.alert')
+            vals['region'] = vals['region'].upper()
+            vals['district'] = vals['district'].upper()
         return super(RumorAlert, self).create(vals_list)
