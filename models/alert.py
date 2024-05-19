@@ -6,14 +6,15 @@ class RumorAlert(models.Model):
     _name = 'rumor.alert'
     _inherit = 'mail.thread'
     _description = _("Tracking of rumors via RapidPro")
+    name = fields.Char(string='Venue', readonly=True, store=True)
     village = fields.Char(string=_("Village"), required=True, tracking=True)
-    description = fields.Text(string=_("Description de l'alerte"), tracking=True)
+    description = fields.Text(string=_("Description de l'alerte"), required=True, tracking=True)
     cvac_name = fields.Char(string=_("Name of Community Health Actor"), required=True, tracking=True)
     cvac_tel = fields.Char(string=_("Phone Contact of Community Health Actor"), required=True, tracking=True)
     icp_name = fields.Char(string=_("Name of Associated Head Nurse"), required=True, tracking=True)
     icp_tel = fields.Char(string=_("Phone of Associated Head Nurse"), required=True, tracking=True)
-    region = fields.Char(string=_("Region"), compute="_compute_capitalized_name", tracking=True)
-    district = fields.Char(string=_("District"), compute="_compute_capitalized_name", tracking=True)
+    region = fields.Char(string=_("Region"), required=True, tracking=True)
+    district = fields.Char(string=_("District"), required=True, tracking=True)
     structure = fields.Char(string=_("Health Facility"), required=True, tracking=True)
     ref = fields.Char(string="Référence",
                       default=lambda self: self.env['ir.sequence'].next_by_code('rumor.alert') or _("Nouveau"))
@@ -25,4 +26,5 @@ class RumorAlert(models.Model):
             vals['ref'] = self.env['ir.sequence'].next_by_code('rumor.alert')
             vals['region'] = vals['region'].upper()
             vals['district'] = vals['district'].upper()
+            vals['name'] = vals['village'].upper() + '_' + vals['ref']
         return super(RumorAlert, self).create(vals_list)

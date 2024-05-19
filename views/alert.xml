@@ -69,7 +69,7 @@
             <field name="res_model">rumor.alert</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_filter_child':1}</field>
-            <field name="search_view_id" ref="rumor.view_rumor_alert_search"/>
+            <field name="search_view_id" ref="view_rumor_alert_search"/>
         </record>
         <!-- Top menu item -->
         <menuitem name="Alerts"
