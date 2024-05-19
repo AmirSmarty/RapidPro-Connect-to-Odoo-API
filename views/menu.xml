@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        <menuitem name="Rumors" id="menu_rumor_root" sequence="10"/>
+        <menuitem name="Tracking" id="menu_rumor_tracking"
+                  parent="menu_rumor_root"
+                  sequence="10"/>
+        <menuitem name="Alerts" id="menu_alerts"
+                  parent="menu_rumor_root"
+                  sequence="10"/>
+    </data>
+</odoo>

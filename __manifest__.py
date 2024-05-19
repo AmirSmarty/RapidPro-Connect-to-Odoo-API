@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "rumors",
+    'name': "Rumors Tracking Module via RapidPro",
 
-    'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+    'summary': "A Module for tracking rumors via Telegram or SMS or WhatsApp",
 
-    'description': """
-        Long description of module's purpose
-    """,
+    'description': "A POC for connect RapidPro to Odoo 16",
 
-    'author': "My Company",
-    'website': "https://www.yourcompany.com",
+    'author': "ZAKE",
+    'website': "https://www.zake.pro",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
@@ -20,13 +16,14 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['mail'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/ir.model.access.csv',
+        'data/sequence.xml',
+        'views/menu.xml',
+        'views/patient.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
