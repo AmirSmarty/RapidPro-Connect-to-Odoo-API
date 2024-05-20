@@ -15,7 +15,7 @@ class Rumors(http.Controller):
 
         # Créer l'enregistrement
         alert = request.env['rumor.alert'].sudo().create({
-            'name': village.upper() + '_' + ref,
+            # 'name': village.upper() + '_' + ref,
             'village': village,
             'description': description,
             'cvac_name': cvac_name,

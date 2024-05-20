@@ -28,3 +28,11 @@ class RumorAlert(models.Model):
             vals['district'] = vals['district'].upper()
             vals['name'] = vals['village'].upper() + '_' + vals['ref']
         return super(RumorAlert, self).create(vals_list)
+
+    @api.model
+    def create(self, vals):
+        vals['ref'] = self.env['ir.sequence'].next_by_code('rumor.alert')
+        vals['name'] = vals['village'].upper() + '_' + vals['ref']
+        record = super(RumorAlert, self).create(vals)
+        # Insérez ici votre code personnalisé à exécuter lors de la création d'un seul enregistrement
+        return record
