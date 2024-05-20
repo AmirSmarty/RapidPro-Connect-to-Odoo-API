@@ -8,7 +8,7 @@ class RumorAlert(models.Model):
     _description = _("Tracking of rumors via RapidPro")
     name = fields.Char(string='Venue', readonly=True, store=True)
     village = fields.Char(string=_("Village"), required=True, tracking=True)
-    description = fields.Text(string=_("Description de l'alerte"), required=True, tracking=True)
+    description = fields.Text(string=_("Description of alert"), required=True, tracking=True)
     cvac_name = fields.Char(string=_("Name of Community Health Actor"), required=True, tracking=True)
     cvac_tel = fields.Char(string=_("Phone Contact of Community Health Actor"), required=True, tracking=True)
     icp_name = fields.Char(string=_("Name of Associated Head Nurse"), required=True, tracking=True)
