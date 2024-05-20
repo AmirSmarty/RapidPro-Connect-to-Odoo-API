@@ -23,7 +23,7 @@ class RumorAlert(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            vals['ref'] = self.env['ir.sequence'].next_by_code('rumor.alert')
+            vals['ref'] = self.env['ir.sequence'].sudo().next_by_code('rumor.alert')
             vals['region'] = vals['region'].upper()
             vals['district'] = vals['district'].upper()
             vals['name'] = vals['village'].upper() + '_' + vals['structure']
@@ -31,7 +31,7 @@ class RumorAlert(models.Model):
 
     @api.model
     def create(self, vals):
-        vals['ref'] = self.env['ir.sequence'].next_by_code('rumor.alert')
+        vals['ref'] = self.env['ir.sequence'].sudo().next_by_code('rumor.alert')
         vals['name'] = vals['village'].upper() + '_' + vals['structure']
         record = super(RumorAlert, self).create(vals)
         # Insérez ici votre code personnalisé à exécuter lors de la création d'un seul enregistrement
