@@ -17,7 +17,7 @@ class RumorAlert(models.Model):
     district = fields.Char(string=_("District"), required=True, tracking=True)
     structure = fields.Char(string=_("Health Facility"), required=True, tracking=True)
     ref = fields.Char(string="Référence",
-                      default=lambda self: self.env['ir.sequence'].next_by_code('rumor.alert') or _("Nouveau"))
+                      default=lambda self: self.env['ir.sequence'].sudo().next_by_code('rumor.alert') or _("Nouveau"))
 
 
     @api.model_create_multi

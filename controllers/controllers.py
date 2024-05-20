@@ -16,7 +16,7 @@ class Rumors(http.Controller):
         # Créer l'enregistrement
         alert = request.env['rumor.alert'].sudo().create({
             # 'name': village.upper() + '_' + ref,
-            'ref': request.env['ir.sequence'].sudo().next_by_code('rumor.alert'),
+            # 'ref': request.env['ir.sequence'].sudo().next_by_code('rumor.alert'),
             'village': village,
             'description': description,
             'cvac_name': cvac_name,
@@ -30,6 +30,6 @@ class Rumors(http.Controller):
 
         if alert:
             # return "Enregistrement de l'alerte ajouté avec succès"
-            return json.dumps({'success': True, 'alert_id': alert.id})
+            return json.dumps({'success': True, 'alert_id': alert.ref})
         else:
             return _("Une erreur s'est produite lors de l'ajout de l'alerte")
