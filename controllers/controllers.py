@@ -30,6 +30,6 @@ class Rumors(http.Controller):
 
         if alert:
             # return "Enregistrement de l'alerte ajouté avec succès"
-            return json.dumps({'success': True, 'alert_id': alert.ref})
+            return json.dumps({'success': True, 'alert_id': alert.id})
         else:
             return _("Une erreur s'est produite lors de l'ajout de l'alerte")
