@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import http, _
+from odoo import http, _, SUPERUSER_ID
 from odoo.http import request
 import json
 
@@ -16,7 +16,7 @@ class Rumors(http.Controller):
         # Créer l'enregistrement
         alert = request.env['rumor.alert'].sudo().create({
             # 'name': village.upper() + '_' + ref,
-            # 'ref': request.env['ir.sequence'].sudo().next_by_code('rumor.alert'),
+            'ref': request.env['ir.sequence'].sudo().next_by_code('rumor.alert'),
             'village': village,
             'description': description,
             'cvac_name': cvac_name,
